@@ -19,7 +19,7 @@ class TrackingCoordinator(
 
     private val promptCooldownMs = 20_000L
     private val highSpeedThresholdMps = 8.5f
-    private val strongImpactThreshold = 18f
+    private val strongImpactThreshold = 15f
     private val rotationThreshold = 6.5f
 
     fun onMotionSample(sample: MotionSample) {

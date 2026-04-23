@@ -29,10 +29,21 @@ class MotionMonitor(
 
     fun start() {
         accelerometer?.let {
-            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_GAME)
+            sensorManager.registerListener(
+                this,
+                it,
+                10_000,
+                0
+            )
         }
+
         gyroscope?.let {
-            sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_GAME)
+            sensorManager.registerListener(
+                this,
+                it,
+                10_000,
+                0
+            )
         }
     }
 
