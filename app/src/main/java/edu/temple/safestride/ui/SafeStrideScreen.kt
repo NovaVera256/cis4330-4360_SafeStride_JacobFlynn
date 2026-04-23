@@ -125,6 +125,7 @@ fun SafeStrideScreen(viewModel: SafeStrideViewModel) {
             onDismissAlert = viewModel::dismissSafetyAlert,
             onClearError = viewModel::clearError,
             onShareLocation = { viewModel.shareCurrentLocation(context) },
+            onOpenEmergencyDialer = { viewModel.openEmergencyDialer(context) },
             onStopTracking = viewModel::stopTracking
         )
     }

@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import android.net.Uri
 
 class SafeStrideViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -155,6 +156,19 @@ class SafeStrideViewModel(application: Application) : AndroidViewModel(applicati
         }
 
         context.startActivity(Intent.createChooser(sendIntent, "Share location"))
+    }
+
+    fun openEmergencyDialer(context: Context) {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:911")
+        }
+
+        if (intent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(intent)
+        } else {
+            _uiState.value = _uiState.value.copy(
+                errorMessage = "No phone dialer app is available on this device.")
+        }
     }
 
     override fun onCleared() {

@@ -16,6 +16,7 @@ fun SafetyDialogs(
     onDismissAlert: () -> Unit,
     onClearError: () -> Unit,
     onShareLocation: () -> Unit,
+    onOpenEmergencyDialer: () -> Unit,
     onStopTracking: () -> Unit
 ) {
     uiState.errorMessage?.let { error ->
@@ -49,10 +50,29 @@ fun SafetyDialogs(
 
             dismissButton = {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TextButton(onClick = onDismissAlert) {
+                    TextButton(
+                        onClick = {
+                            onDismissAlert()
+                        }
+                    ) {
                         Text("I'm Okay")
                     }
-                    TextButton(onClick = onStopTracking) {
+
+                    TextButton(
+                        onClick = {
+                            onOpenEmergencyDialer()
+                            onDismissAlert()
+                        }
+                    ) {
+                        Text("Need Help")
+                    }
+
+                    TextButton(
+                        onClick = {
+                            onStopTracking()
+                            onDismissAlert()
+                        }
+                    ) {
                         Text("Stop Tracking")
                     }
                 }
